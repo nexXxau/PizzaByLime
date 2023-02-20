@@ -70,8 +70,32 @@ function db_add($table, $data)
 
     $sql = "INSERT INTO `$table` (" . implode(", ", $sql_columns) . ") VALUES (" . implode(", ", $sql_values) . ")";
     if ($db->query($sql) === TRUE) {
-        return "Record added successfully";
+        return "Запись добавлена успешно!";
     } else {
-        return "Error adding record: " . $db->error;
+        return "Ошибка добавления : " . $db->error;
+    }
+}
+
+/**
+ * Функция чтения по id с базы
+ *
+ * @param string $table Название таблицы
+ * @param number $id Запись в таблице по id
+ *
+ * @return array Ассоциативный массив с значениями как в таблице
+ */
+function db_read($table, $id)
+{
+    global $config;
+    $db = new mysqli($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']);
+
+    $id = $db->real_escape_string($id);
+    $sql = "SELECT * FROM `$table` WHERE `id` = $id";
+    $result = $db->query($sql);
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        return $row;
+    } else {
+        return false;
     }
 }
