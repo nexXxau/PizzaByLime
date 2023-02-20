@@ -21,21 +21,28 @@ function db_table_exist($table)
         return false;
     }
 }
-
-function db_table_create($table)
+/**
+ * Функция создает таблицы в базе данны с указаными значениями
+ *
+ * @param string $table Название таблицы
+ * @param array $columns Ассоциативный массив, название колонки и значение
+ *
+ * @return string Возращает информацию о статусе
+ */
+function db_table_create($table, $columns)
 {
     global $config;
     $db = new mysqli($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']);
-    $sql = "CREATE TABLE IF NOT EXISTS $table (
-      id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-      firstname VARCHAR(30) NOT NULL,
-      lastname VARCHAR(30) NOT NULL,
-      email VARCHAR(50),
-      reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-    )";
+
+    $sql_columns = array();
+    foreach ($columns as $name => $type) {
+        $sql_columns[] = "`$name` $type";
+    }
+
+    $sql = "CREATE TABLE IF NOT EXISTS `$table` (" . implode(", ", $sql_columns) . ");";
     if ($db->query($sql) === TRUE) {
-        return "Таблица $table создана успешно";
+        return "Таблица $table создана!";
     } else {
-        return "Ошибка создания таблицы: " . $db->error;
+        return "Ошибка создания: " . $db->error;
     }
 }
