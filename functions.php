@@ -21,6 +21,7 @@ function db_table_exist($table)
         return false;
     }
 }
+
 /**
  * Функция создает таблицы в базе данны с указаными значениями
  *
@@ -44,5 +45,33 @@ function db_table_create($table, $columns)
         return "Таблица $table создана!";
     } else {
         return "Ошибка создания: " . $db->error;
+    }
+}
+
+/**
+ * Функция добавления данных в таблицу
+ *
+ * @param string $table Название таблицы
+ * @param array $data Массив который должен соотвествовать структуре таблицы
+ *
+ * @return string Возращает информацию о статусе
+ */
+function db_add($table, $data)
+{
+    global $config;
+    $db = new mysqli($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']);
+
+    $sql_columns = array();
+    $sql_values = array();
+    foreach ($data as $name => $value) {
+        $sql_columns[] = "`$name`";
+        $sql_values[] = "'" . $db->real_escape_string($value) . "'";
+    }
+
+    $sql = "INSERT INTO `$table` (" . implode(", ", $sql_columns) . ") VALUES (" . implode(", ", $sql_values) . ")";
+    if ($db->query($sql) === TRUE) {
+        return "Record added successfully";
+    } else {
+        return "Error adding record: " . $db->error;
     }
 }
