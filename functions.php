@@ -96,6 +96,33 @@ function db_read($table, $id)
         $row = $result->fetch_assoc();
         return $row;
     } else {
-        return false;
+        return array();
     }
+}
+
+/**
+ * Функция обновляет значение в таблицк
+ *
+ * @param string $table Название таблицы
+ * @param number $id Номер записи в таблице
+ * @param array $new_data Новые данные записи
+ *
+ * @return boolean Возрат для проверки
+ */
+function db_upd($table, $id, $new_data)
+{
+    global $config;
+    $db = new mysqli($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']);
+
+    $id = $db->real_escape_string($id);
+    $set_clause = '';
+    foreach ($new_data as $column => $value) {
+        $column = $db->real_escape_string($column);
+        $value = $db->real_escape_string($value);
+        $set_clause .= "`$column` = '$value', ";
+    }
+    $set_clause = rtrim($set_clause, ', ');
+    $sql = "UPDATE `$table` SET $set_clause WHERE `id` = $id";
+    $result = $db->query($sql);
+    return $result;
 }
