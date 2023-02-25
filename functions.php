@@ -1,7 +1,7 @@
 <?php
 // Подключение файла config.php
-require_once 'config.php';
-
+require_once 'configs/config.php';
+require_once 'checkdb.php';
 
 /**
  * Функция проверяет существует ли таблица
