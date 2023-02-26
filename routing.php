@@ -1,11 +1,8 @@
 <?php
 
 switch ($_SERVER['REQUEST_URI']) {
-    case '/':
+    case '/newcalc/':
         include 'templates/home.php';
-        break;
-    case '/stat':
-        include 'templates/stat.php';
         break;
     default:
         http_response_code(404);

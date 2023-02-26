@@ -101,6 +101,32 @@ function db_read($table, $id)
 }
 
 /**
+ * [db_read_all description]
+ *
+ * @param   [type]  $table  [$table description]
+ *
+ * @return  [type]          [return description]
+ */
+function db_read_all($table)
+{
+    global $config;
+    $db = new mysqli($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']);
+
+    $sql = "SELECT * FROM `$table`";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            $rows[] = $row;
+        }
+        return $rows;
+    } else {
+        return array();
+    }
+}
+
+/**
  * Функция обновляет значение в таблицк
  *
  * @param string $table Название таблицы
@@ -126,3 +152,12 @@ function db_upd($table, $id, $new_data)
     $result = $db->query($sql);
     return $result;
 }
+
+
+/**
+ * *****************************************
+ * 
+ * *****************************************
+ */
+
+
