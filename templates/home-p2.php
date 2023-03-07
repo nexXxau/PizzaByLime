@@ -14,6 +14,35 @@
                     <input class="uk-input" type="text" name="dish_name" required>
                 </div>
             </div>
+            <div class="uk-margin">
+                <div class="uk-form-controls uk-text-right">
+                    <button class="uk-button uk-button-primary" type="submit">Add Dish</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<button uk-toggle="target: #mgfiu76" class="uk-button uk-button-default">Ингредиенты</button>
+
+<div id="mgfiu76" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+
+        <h1 class="uk-heading-medium">Set Ingredients</h1>
+
+        <form class="uk-form-horizontal" method="post" action="/newcalc/model/set-ingr.php">
+            <div class="uk-margin">
+                <label class="uk-form-label" for="dish_name">Dish Name:</label>
+                <div class="uk-form-controls">
+                    <select name="dish_name" id="dishname">
+
+                    </select>
+                </div>
+            </div>
 
             <div class="uk-margin">
                 <label class="uk-form-label" for="ingredients">Ingredients:</label>
@@ -56,14 +85,14 @@
         }
 
         var weight_input = document.createElement('input');
-        weight_input.setAttribute('class', 'uk-input');
+        weight_input.setAttribute('class', 'uk-input uk-width-1-2');
         weight_input.setAttribute('type', 'number');
         weight_input.setAttribute('name', 'weights[]');
         weight_input.setAttribute('placeholder', 'Weight in grams');
         weight_input.setAttribute('required', '');
 
         var remove_button = document.createElement('button');
-        remove_button.setAttribute('class', 'uk-button uk-button-danger');
+        remove_button.setAttribute('class', 'uk-button uk-button-danger uk-width-1-2');
         remove_button.setAttribute('type', 'button');
         remove_button.textContent = 'Remove';
         remove_button.addEventListener('click', function () {
@@ -81,8 +110,22 @@
         ingredient_index++;
     }
 
-    add_ingredient_button.addEventListener('click', add_ingredient);
 
+    var dishes = <?php echo json_encode(db_read_all('dishes')); ?>;
+
+    var dishname = document.getElementById('dishname');
+    dishname.setAttribute('class', 'uk-select');
+    dishname.setAttribute('name', 'ingredients[]');
+
+    for (var i = 0; i < dishes.length; i++) {
+        var dish = dishes[i]; // используем другое имя переменной
+        var option = document.createElement('option');
+        option.setAttribute('value', dish.id);
+        option.textContent = dish.dishes_name;
+        dishname.appendChild(option);
+    }
+
+    add_ingredient_button.addEventListener('click', add_ingredient);
 
 </script>
 
