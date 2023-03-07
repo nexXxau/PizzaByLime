@@ -43,6 +43,12 @@
         <tr>
             <td><?php echo $product['product_name'];?></td>
             <td><?php echo $product['price_per_kg'];?></td>
+            <td>
+                <form action="/newcalc/model/del-products.php" method="post">
+                    <input class="uk-input" type="text" name="id" value="<?php echo $product['id'] ?>" required hidden >
+                    <button class="uk-button uk-button-danger uk-button-small uk-align-right" type="submit">x</button>
+                </form>
+            </td>
         </tr>
         <?php endforeach; ?>
     </tbody>

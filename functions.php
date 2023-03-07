@@ -77,6 +77,27 @@ function db_add($table, $data)
 }
 
 /**
+ * [db_del description]
+ *
+ * @param   [type]  $table  [$table description]
+ * @param   [type]  $id     [$id description]
+ *
+ * @return  [type]          [return description]
+ */
+function db_del($table, $id) 
+{
+    global $config;
+    $db = new mysqli($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']);
+    $sql = "DELETE FROM $table WHERE id=$id";
+
+    if ($db->query($sql) === TRUE) {
+        return "Запись удалена успешно!";
+    } else {
+        return "Ошибка удаление: " . $db->error;
+    }
+}
+
+/**
  * Функция чтения по id с базы
  *
  * @param string $table Название таблицы
