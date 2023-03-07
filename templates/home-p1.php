@@ -7,33 +7,27 @@
 
 
 
-    <h2 class="uk-heading-divider">Add Product</h2>
-    <form class="uk-form-horizontal" method="post" action="/newcalc/model.php">
+    <h2 class="uk-heading-divider">Додавання продукту</h2>
+    <form class="uk-form-horizontal" method="post" action="/newcalc/model/add-products.php">
         <div class="uk-margin">
-            <label class="uk-form-label" for="product_name">Product Name:</label>
+            <label class="uk-form-label" for="product_name">Назва:</label>
             <div class="uk-form-controls">
                 <input class="uk-input" type="text" name="product_name" id="product_name" required>
             </div>
         </div>
         <div class="uk-margin">
-            <label class="uk-form-label" for="price_per_kg">Price per KG:</label>
+            <label class="uk-form-label" for="price_per_kg">Ціна за кг:</label>
             <div class="uk-form-controls">
-                <input class="uk-input" type="number" name="price_per_kg" id="price_per_kg" step="0.01" min="0.01" required>
+                <input class="uk-input" type="number" name="price_per_kg" id="price_per_kg" step="1" min="0" required>
             </div>
         </div>
         <div class="uk-margin">
-            <button class="uk-button uk-button-primary" type="submit">Add Product</button>
+            <button class="uk-button uk-button-primary" type="submit">Додати</button>
         </div>
     </form>
 
-
-
-
-
     </div>
 </div>
-
-
 
 <table class="uk-table uk-table-striped">
     <?php $all_products = db_read_all('products'); ?>
