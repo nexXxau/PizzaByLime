@@ -84,44 +84,6 @@
     add_ingredient_button.addEventListener('click', add_ingredient);
 
 
-    // Получаем значения полей формы
-    const dish_name = document.getElementById('dish_name').value;
-
-    let asdad = document.getElementById('ingredients_container');
-
-    let ingredients = Array();
-    let weights = Array();
-
-    let i = 0;
-    for (let node of asdad.childNodes) {
-        
-        let i = parseInt(node.split('_')[1]);
-
-        ingredients[i] = node.children[0].value;
-        weights[i] = node.children[1].value;
-    }
-
-    // Создаем объект запроса
-    const xhr = new XMLHttpRequest();
-
-    // Устанавливаем обработчик события загрузки
-    xhr.addEventListener('load', function() {
-    // Обрабатываем ответ от сервера
-    if (xhr.status === 200) {
-        console.log(xhr.responseText);
-        // Очищаем поля формы
-        document.getElementById('dish_name').value = '';
-        document.getElementById('ingredients').value = '';
-        document.getElementById('weights').value = '';
-    } else {
-        console.error('Произошла ошибка при отправке запроса');
-    }
-    });
-
-    // Отправляем запрос на сервер
-    xhr.open('POST', '/path/to/add-dishes.php');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send(`dish_name=${dish_name}&ingredients=${ingredients}&weights=${weights}`);
 </script>
 
 <table class="uk-table uk-table-striped">
