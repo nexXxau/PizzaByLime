@@ -168,7 +168,9 @@
         <?php foreach ($all_dishes as $dish) : ?>
         <tr>
             <td><?php echo $dish['dishes_name'];?></td>
-            <td>Table Data</td>
+            <td>
+                <?php echo get_array_ingredients($dish['id']); ?>
+            </td>
             <td>Table Data</td>
             <td>
                 <form action="/newcalc/model/del-dishes.php" method="post">

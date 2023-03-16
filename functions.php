@@ -210,3 +210,20 @@ function db_upd($table, $id, $new_data)
  */
 
 
+ function get_array_ingredients($dish_id) {
+
+    $result = '';
+
+    $all = db_read_allbyvalue('prod_in_dish', 'dishes_id', $dish_id);
+
+    foreach ($all as $one) {
+
+        $product = db_read('products', $one['product_id']);
+
+        echo $one['weight'] . ' грам - ';
+        echo $product["product_name"] . '<br>';
+        
+    }
+
+    return $result;
+ }
