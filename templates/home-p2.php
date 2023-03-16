@@ -34,7 +34,7 @@
 
         <h1 class="uk-heading-medium">Set Ingredients</h1>
 
-        <form class="uk-form-horizontal" method="post" action="/newcalc/model/set-ingr.php">
+        <form class="uk-form-horizontal" method="get" action="/newcalc/model/set-ingr.php">
             <div class="uk-margin">
                 <label class="uk-form-label" for="dish_name">Dish Name:</label>
                 <div class="uk-form-controls">
@@ -61,6 +61,17 @@
         </form>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
     // Get the products list from the server
@@ -115,7 +126,7 @@
 
     var dishname = document.getElementById('dishname');
     dishname.setAttribute('class', 'uk-select');
-    dishname.setAttribute('name', 'ingredients[]');
+    dishname.setAttribute('name', 'dishname');
 
     for (var i = 0; i < dishes.length; i++) {
         var dish = dishes[i]; // используем другое имя переменной
@@ -126,8 +137,23 @@
     }
 
     add_ingredient_button.addEventListener('click', add_ingredient);
-
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <table class="uk-table uk-table-striped">
     <?php $all_dishes = db_read_all('dishes'); ?>
