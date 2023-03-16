@@ -34,7 +34,7 @@
 
         <h1 class="uk-heading-medium">Set Ingredients</h1>
 
-        <form class="uk-form-horizontal" method="get" action="/newcalc/model/set-ingr.php">
+        <form class="uk-form-horizontal" method="post" action="/newcalc/model/set-ingr.php">
             <div class="uk-margin">
                 <label class="uk-form-label" for="dish_name">Dish Name:</label>
                 <div class="uk-form-controls">
@@ -169,9 +169,11 @@
         <tr>
             <td><?php echo $dish['dishes_name'];?></td>
             <td>
-                <?php echo get_array_ingredients($dish['id']); ?>
+                <?php ingredients_names($dish['id']); ?>
             </td>
-            <td>Table Data</td>
+            <td>
+                <?php dish_price($dish['id']); ?>
+            </td>
             <td>
                 <form action="/newcalc/model/del-dishes.php" method="post">
                     <input class="uk-input" type="text" name="id" value="<?php echo $dish['id'] ?>" required hidden >

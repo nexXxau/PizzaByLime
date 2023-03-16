@@ -209,8 +209,14 @@ function db_upd($table, $id, $new_data)
  * *****************************************
  */
 
-
- function get_array_ingredients($dish_id) {
+/**
+ * [ingredients_names description]
+ *
+ * @param   [type]  $dish_id  [$dish_id description]
+ *
+ * @return  [type]            [return description]
+ */
+ function ingredients_names($dish_id) {
 
     $result = '';
 
@@ -220,10 +226,35 @@ function db_upd($table, $id, $new_data)
 
         $product = db_read('products', $one['product_id']);
 
-        echo $one['weight'] . ' грам - ';
-        echo $product["product_name"] . '<br>';
+        echo '<span>' . $one['weight'] . ' грам </span> - ';
+        echo '<span class="uk-text-muted">' . $product["product_name"] . '</span><br>';
         
     }
 
     return $result;
+ }
+
+/**
+ * [dish_price description]
+ *
+ * @param   [type]  $dish_id  [$dish_id description]
+ *
+ * @return  [type]            [return description]
+ */
+ function dish_price($dish_id) {
+
+    $result = 0;
+
+    $all = db_read_allbyvalue('prod_in_dish', 'dishes_id', $dish_id);
+
+    foreach ($all as $one) {
+
+        $product = db_read('products', $one['product_id']);
+
+        $adsasd = $one['weight'] / 1000;
+
+        $result = $result + $product["price_per_kg"] *  $adsasd;
+    }
+
+    echo $result;
  }
