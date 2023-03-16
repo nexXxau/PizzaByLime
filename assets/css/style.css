@@ -1,0 +1,21 @@
+@media (max-width: 400px) {
+    main.uk-container.uk-margin-top {
+        margin: 0px;
+        padding: 0;
+    }
+
+    .uk-card.uk-card-default.uk-card-body {
+        padding: 5px 20px;
+    }
+
+    div.main_homesection {
+        overflow: scroll;
+        width: 100%;
+    }
+
+    .uk-table thead th,
+    .uk-table tbody td {
+        white-space: nowrap;
+    }
+    
+}

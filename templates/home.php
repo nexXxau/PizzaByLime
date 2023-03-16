@@ -1,16 +1,5 @@
 <?php include('elements/header.php'); ?>
 
-
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Добавление ингредиента</title>
-  <link rel="stylesheet" href="assets/css/uikit.min.css">
-</head>
-<body>
-
 <?php require_once 'elements/header.php'; ?>
 
 <main class="uk-container uk-margin-top">

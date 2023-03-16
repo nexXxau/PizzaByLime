@@ -1,22 +1,22 @@
-<button uk-toggle="target: #kb45ek" class="uk-button uk-button-default">Додати новий</button>
+<button uk-toggle="target: #kb45ek" class="uk-button uk-button-default">Додати страву</button>
 
 <div id="kb45ek" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
         <button class="uk-modal-close-default" type="button" uk-close></button>
 
 
-        <h1 class="uk-heading-medium">Add Dish</h1>
+        <h2 class="uk-heading-divider">Додавання страви</h2>
 
         <form class="uk-form-horizontal" method="post" action="/newcalc/model/add-dishes.php">
             <div class="uk-margin">
-                <label class="uk-form-label" for="dish_name">Dish Name:</label>
+                <label class="uk-form-label" for="dish_name">Назва страви:</label>
                 <div class="uk-form-controls">
                     <input class="uk-input" type="text" name="dish_name" required>
                 </div>
             </div>
             <div class="uk-margin">
                 <div class="uk-form-controls uk-text-right">
-                    <button class="uk-button uk-button-primary" type="submit">Add Dish</button>
+                    <button class="uk-button uk-button-primary" type="submit">Додати</button>
                 </div>
             </div>
 
@@ -25,18 +25,18 @@
 </div>
 
 
-<button uk-toggle="target: #mgfiu76" class="uk-button uk-button-default">Ингредиенты</button>
+<button uk-toggle="target: #mgfiu76" class="uk-button uk-button-default">Інгредієнти</button>
 
 <div id="mgfiu76" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
         <button class="uk-modal-close-default" type="button" uk-close></button>
 
 
-        <h1 class="uk-heading-medium">Set Ingredients</h1>
+        <h2 class="uk-heading-divider">Задати інгредієнти страви</h2>
 
         <form class="uk-form-horizontal" method="post" action="/newcalc/model/set-ingr.php">
             <div class="uk-margin">
-                <label class="uk-form-label" for="dish_name">Dish Name:</label>
+                <label class="uk-form-label" for="dish_name">Страва:</label>
                 <div class="uk-form-controls">
                     <select name="dish_name" id="dishname">
 
@@ -45,17 +45,16 @@
             </div>
 
             <div class="uk-margin">
-                <label class="uk-form-label" for="ingredients">Ingredients:</label>
+                <label class="uk-form-label" for="ingredients">Інгредієнти:</label>
                 <div class="uk-form-controls">
                     <div class="uk-margin" id="ingredients_container"></div>
-                    <button class="uk-button uk-button-default" type="button" id="add_ingredient">Add
-                        Ingredient</button>
+                    <button class="uk-button uk-button-small" type="button" id="add_ingredient">Ще один...</button>
                 </div>
             </div>
 
             <div class="uk-margin">
                 <div class="uk-form-controls uk-text-right">
-                    <button class="uk-button uk-button-primary" type="submit">Add Dish</button>
+                    <button class="uk-button uk-button-primary" type="submit">Задати</button>
                 </div>
             </div>
         </form>
@@ -99,13 +98,13 @@
         weight_input.setAttribute('class', 'uk-input uk-width-1-2');
         weight_input.setAttribute('type', 'number');
         weight_input.setAttribute('name', 'weights[]');
-        weight_input.setAttribute('placeholder', 'Weight in grams');
+        weight_input.setAttribute('placeholder', 'Грам');
         weight_input.setAttribute('required', '');
 
         var remove_button = document.createElement('button');
         remove_button.setAttribute('class', 'uk-button uk-button-danger uk-width-1-2');
         remove_button.setAttribute('type', 'button');
-        remove_button.textContent = 'Remove';
+        remove_button.textContent = 'Видалити';
         remove_button.addEventListener('click', function () {
             ingredient_div.remove();
         });
