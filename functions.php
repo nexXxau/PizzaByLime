@@ -148,6 +148,34 @@ function db_read_all($table)
 }
 
 /**
+ * [db_read_allbyvalue description]
+ *
+ * @param   [type]  $table   [$table description]
+ * @param   [type]  $column  [$column description]
+ * @param   [type]  $value   [$value description]
+ *
+ * @return  [type]           [return description]
+ */
+function db_read_allbyvalue($table, $column, $value) {
+    global $config;
+    $db = new mysqli($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']);
+
+    $sql = "SELECT * FROM `$table` WHERE `$column` = '" . $db->real_escape_string($value) . "'";
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            $rows[] = $row;
+        }
+        return $rows;
+    } else {
+        return array();
+    }
+}
+
+
+/**
  * Функция обновляет значение в таблицк
  *
  * @param string $table Название таблицы
